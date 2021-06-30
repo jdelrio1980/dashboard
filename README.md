@@ -1,27 +1,47 @@
-# BlogAngular
+# Proyecto DashBoard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+Este proyecto fue realizado con angular y esta publicado en https://jdelrio1980.github.io/dashboard/ de forma publica.
 
-## Development server
+# Versiones Usadas
+- Angular 9.1.15
+- Firestore 6.1.15
+- Angular/ Material 
+- angular/cli                      9.1.15
+- angular/fire                     6.1.5
+- angular/material                 9.2.4
+- ngtools/webpack                  9.1.15
+- schematics/angular               9.1.15
+- schematics/update                0.901.15
+- rxjs                              6.5.5
+- typescript                        3.8.3
+- webpack                           4.42.0
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Configuracion del Proyecto Backed
+- FrameWork: Laravel
+- Lenguaje PHP
+- Base de Datos: Mysql, Firestore
+- Serrvidor de Desarrollo backend APACHE
+# Configuración del Proyecto FrontEnd
+- FrameWork: Angular 11
+- Lenguaje: Typescript
 
-## Code scaffolding
+# Componentes de Software (Backend)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Validacionde Identidad con JWT 
 
-## Build
+- Se Desarrollo la API - RESTFULL desde cero. la cual me proporciona los servicio de validacion con JWT, Los usuarios estan registrados en una base de datos local en MYSQL, con encripcion de claves en md5
+- Localmente se configuro un dominio virtual https://api-rest-laravel.com/
+- Base de Datos: api-rest_laravel
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+##  Almacenamiwento en la Nube
+La informacion acerca de las tareas esta localizada en los servicios en la nube Firestore, 
 
-## Running unit tests
+## Comoponentes de Software (FrontEnd)
+- Signup: Se pueden crear usuarios que van para el sistema deidentidad con la clave correspondiente, el identidicador es el correo.
+- Login: Usando el correo y la clave se puede accesar al sistema, asi como la funcionalidad de signoup, :a validacion del usuario en el sistema es atravez del token si esta presente en el local Storage.
+- Creacion de Tareas: Formulario Reactivo que permite la captura de tareas haciendo la validacion de datos y enviando a la Basede datos firestore
+- Dashboard: Visualizacionde un tablero con columnas verticales por estado de tarea, Uso de tecnologia Drag and Drop para arrastrar las tareas y cambiarles los estados
+-
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
