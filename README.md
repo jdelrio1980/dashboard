@@ -41,7 +41,6 @@ La informacion acerca de las tareas esta localizada en los servicios en la nube 
 - Login: Usando el correo y la clave se puede accesar al sistema, asi como la funcionalidad de signoup, :a validacion del usuario en el sistema es atravez del token si esta presente en el local Storage.
 - Creacion de Tareas: Formulario Reactivo que permite la captura de tareas haciendo la validacion de datos y enviando a la Basede datos firestore
 - Dashboard: Visualizacionde un tablero con columnas verticales por estado de tarea, Uso de tecnologia Drag and Drop para arrastrar las tareas y cambiarles los estados
--
 
 
 
