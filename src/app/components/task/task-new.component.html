@@ -1,0 +1,62 @@
+<div class="text-center montserrat">
+    ADD TASK</div>
+
+<hr>
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+    <div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Title</label>
+            <div class="col">
+
+                <input class="form-control" type="text" placeholder="Title" formControlName="title" [class.is-invalid]="titleNoValid" [class.is-valid]="!titleNoValid">
+                <small *ngIf="titleNoValid" class="text-danger">Ingrese 10 letras minimo</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Description</label>
+            <div class="col">
+
+                <input class="form-control" type="text" placeholder="Description" formControlName="description" [class.is-invalid]="descriptionNoValid" [class.is-valid]="!descriptionNoValid">
+                <small *ngIf="descriptionNoValid" class="text-danger">The description is invalid</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Status</label>
+            <div class="col">
+
+                <input class="form-control" type="email" placeholder="Status" formControlName="status" [class.is-invalid]="statusNoValid" [class.is-valid]="!statusNoValid">
+                <small *ngIf="statusNoValid" class="text-danger">The status is invalid</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">User</label>
+            <div class="col">
+
+                <input class="form-control" type="text" placeholder="User" formControlName="user" [class.is-invalid]="userNoValid">
+                <small *ngIf="userNoValid" class="text-danger">The User es invalid</small>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+                Guardar
+            </button>
+        </div>
+
+    </div>
+
+</form>
