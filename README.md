@@ -31,7 +31,7 @@ Este proyecto fue realizado con angular y esta publicado en https://jdelrio1980.
 
 - Se Desarrollo la API - RESTFULL desde cero. la cual me proporciona los servicio de validacion con JWT, Los usuarios estan registrados en una base de datos local en MYSQL, con encripcion de claves en md5
 - Localmente se configuro un dominio virtual https://api-rest-laravel.com/
-- Base de Datos: api-rest_laravel
+- Base de Datos: api-rest_laravel se adjunta como archivo identidades.sql
 
 ##  Almacenamiwento en la Nube
 La informacion acerca de las tareas esta localizada en los servicios en la nube Firestore, 
