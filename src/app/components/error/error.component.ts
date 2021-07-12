@@ -9,7 +9,7 @@ export class ErrorComponent implements OnInit {
 
   public page_title: string;
   constructor() { 
-    this.page_title = 'PAgina no encontrada';
+    this.page_title = 'Pagina no encontrada';
   }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="tasksToDo || tasksInProgress || tasksDone ">
     <div class="row">
-        <h3 class="text-center montserrat">DASHBOARD</h3>
+        <h3 class="text-center montserrate">DASHBOARD</h3>
     </div>
 
     <div class="float-right">
@@ -11,13 +11,14 @@
     <div class="row">
         <div class="col-lg-4">
             <h4 class="montserrate text-center">REQUESTED</h4>
+
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" #todoList="cdkDropList" [cdkDropListData]="tasksToDo" [cdkDropListConnectedTo]="[progressList]">
 
-                <div class="card" *ngFor="let task of tasksToDo" cdkDrag>{{task.title}}
+                <div class="card" *ngFor="let task of tasksToDo" cdkDrag><strong>Id: {{task.id}}</strong>
 
                     <div class="card-body">
                         <h5 class="card-title">{{task.title}}</h5>
-                        <p class="card-text ext-justify">{{task.description|slice:0:200}}</p>
+                        <p class="card-text ext-justify">{{task.description}}</p>
                         <button type="button" class="btn btn-outline-primary btn-block">Ver más...</button>
                     </div>
                 </div>
@@ -28,7 +29,7 @@
             <h4 class="montserrate text-center">IN PROGRESS</h4>
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" #progressList="cdkDropList" [cdkDropListData]="tasksInProgress" [cdkDropListConnectedTo]="[todoList,doneList]">
 
-                <div class="card" *ngFor="let task1 of tasksInProgress" cdkDrag>{{task1.title}}
+                <div class="card" *ngFor="let task1 of tasksInProgress" cdkDrag><strong>Id: {{task1.id}}</strong>
                     <div class="card-body">
                         <h5 class="card-title">{{task1.title}}</h5>
                         <p class="card-text ext-justify">{{task1.description|slice:0:200}}</p>
@@ -42,7 +43,7 @@
         <div class="col-lg-4">
             <h4 class="montserrate text-center">DONE</h4>
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" #doneList="cdkDropList" [cdkDropListData]="tasksDone" [cdkDropListConnectedTo]="[progressList]">
-                <div class="card" *ngFor="let task2 of tasksDone" cdkDrag>{{task2.title}}
+                <div class="card" *ngFor="let task2 of tasksDone" cdkDrag><strong>Id: {{task2.id}}</strong>
                     <div class="card-body">
                         <h5 class="card-title">{{task2.title}}</h5>
                         <p class="card-text ext-justify">{{task2.description|slice:0:200}}</p>

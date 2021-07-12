@@ -18,7 +18,8 @@ export class TaskComponent implements OnInit {
   public tasksInProgress: Task[]= [];
   public tasksDone: Task[]= [];
   public identity;
-  public status ;
+  public status;
+  public id;
    
 
   constructor(  private _taskService: TaskService,
@@ -31,26 +32,67 @@ export class TaskComponent implements OnInit {
     
       this._taskService.getTasksByStatus('Nueva',this.identity.email).subscribe(
        (response: any) => {        
+        
+        let objeto: any;
+        let task: Task;
+
         response.forEach(element => {
-          this.tasksToDo.push(element);
+          objeto =  element.payload.doc._delegate._document.data.value.mapValue.fields;          
+          task = {
+            id:  element.payload.doc.id,
+            title: objeto.title.stringValue,
+            description:objeto.description.stringValue,
+            status: objeto.status.stringValue,
+            user: objeto.user.stringValue
+          };
+          
+          this.tasksToDo.push(task);
         }); 
        }
      );
 
      this._taskService.getTasksByStatus('En Progreso',this.identity.email).subscribe(
-      (response: any) => {        
-        console.log(response );
-       response.forEach(element => {         
-         this.tasksInProgress.push(element);
-       }); 
+      (response: any) => {   
+
+        let objeto: any;
+        let task: Task;
+
+        response.forEach(element => {
+          objeto =  element.payload.doc._delegate._document.data.value.mapValue.fields;          
+          task = {
+            id:  element.payload.doc.id,
+            title: objeto.title.stringValue,
+            description:objeto.description.stringValue,
+            status: objeto.status.stringValue,
+            user: objeto.user.stringValue
+          };
+          
+          this.tasksInProgress.push(task);
+        }); 
+
+
+
+
       }
     );
     
     this._taskService.getTasksByStatus('Terminada',this.identity.email).subscribe(
       (response: any) => {        
-       response.forEach(element => {
-         this.tasksDone.push(element);
-       }); 
+        let objeto: any;
+        let task: Task;
+
+        response.forEach(element => {
+          objeto =  element.payload.doc._delegate._document.data.value.mapValue.fields;          
+          task = {
+            id:  element.payload.doc.id,
+            title: objeto.title.stringValue,
+            description:objeto.description.stringValue,
+            status: objeto.status.stringValue,
+            user: objeto.user.stringValue
+          };
+          
+          this.tasksDone.push(task);
+        });  
       }
     );
 
@@ -62,36 +104,47 @@ export class TaskComponent implements OnInit {
   }
   */
    drop(event: CdkDragDrop<string[]>) {
-    
-    
+    console.log('event',event);
+    debugger;
+    /*let idx=event.container.data.indexOf(event.previousContainer.data[event.previousIndex]);
+    console.log('idx',idx)
+    if(idx != -1){
+      return;//if item exist
+    }
+    */
+/*    this.data[event.previousContainer.data.index]={...event.container.data.item}
+    this.data[event.container.data.index]={...event.previousContainer.data.item}
+    event.currentIndex=0;
+*/
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log('moveItemInArray');
     } else {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
+      console.log('transferArrayItem');
     }
-    // 1. SAbiendo que con los id tenemos 0-> todo 1-> progress 2-> terminado
-    // 2. buscar el destino event.container.id
+    
+   
     let ArrList = event.container.id.split('-');
     let numContenedor=ArrList[ArrList.length-1];
+    let numEle=event.container.data.length;
+    console.log('num Ele',numEle);
+    console.log('numContenedor',numContenedor);
     
-    //3. Recorrer event.container.data[].status
-    for(let i=0;i<event.container.data.length;i++){
+    let idTaskUpd;
+    for(let i=0;i<numEle;i++){      
       if(event.container.data[i]['status'] !== this.status[numContenedor]){
-        let idTaskUpd = event.container.data[i]['id'];  
-       
-        let idDocUpd = this._taskService.getIdAfs(idTaskUpd);
-        console.log('Desde Componente');        
-        console.log(idDocUpd);
-        //hbgaQGFthis._taskService.updateDoc(idDocUpd,this.status[numContenedor]);
+        idTaskUpd = event.container.data[i]['id'];  
       }
     }
     
+    this._taskService.updateDoc(idTaskUpd,this.status[numContenedor]);
+
+    }
 
   }
-
-}
 
 

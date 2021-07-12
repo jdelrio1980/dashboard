@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore  } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentChangeAction  } from '@angular/fire/firestore';
 import { exit } from 'process';
 import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -18,10 +19,9 @@ export class TaskService {
 
   getTasksByStatus(status: string, user: string){
     
-    return  this._afs.collection('Tasks', ref => ref
-                                    .where('status', '==', status)
-                                    .where('user', '==', user)
-                                ).valueChanges();
+    return this._afs.collection('Tasks', ref => ref
+                    .where('status', '==', status)
+                    .where('user', '==', user)).snapshotChanges();    
   }
 
   saveTask(task){
@@ -35,24 +35,12 @@ export class TaskService {
 
   }
 
-  async getIdAfs(id){    
-    const docRef = this._afs.collection('Tasks', ref => ref.where("id", "==", id));
-
-    docRef.snapshotChanges().forEach((changes) => {
-      changes.map((a) => {        
-        console.log('codigo='+a.payload.doc.id)
-        this.id = a.payload.doc.id; 
-
-        console.log(this.id);
-      });      
-    });  
-
-
-  }
-
   updateDoc(id: string, status: string) {    
       
-      this._afs.collection('Tasks').doc(id).update({ status: status });    
+    console.log('id',id);
+    console.log('status',status);
+    this._afs.collection('Tasks').doc(id).update({ status: status }); 
+       
   }
 
     

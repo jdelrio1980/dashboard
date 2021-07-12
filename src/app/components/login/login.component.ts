@@ -37,7 +37,9 @@ export class LoginComponent implements OnInit {
     // Mejora: si se envia false en el signup deberia funcionar como si fuera null
     this._userService.signup(this.user).subscribe(
       response => {
+        
         console.log(response);
+        
         // tokem 
         // Pregunta: Donde se asigna al status diferente de error
         if(response.status != 'error'){
@@ -54,7 +56,7 @@ export class LoginComponent implements OnInit {
                 console.log(this.identity);
                 localStorage.setItem('token',this.token);
                 localStorage.setItem('identity',JSON.stringify(this.identity));
-                this._router.navigate(['/dashboard']);
+                this._router.navigate(['/inicio']);
             },
             error  => {
               this.status='error';
@@ -68,6 +70,7 @@ export class LoginComponent implements OnInit {
       },
       error  => {
         this.status='error';
+        console.log('antes');
         console.log(<any>error);
       } 
     );
@@ -83,7 +86,7 @@ export class LoginComponent implements OnInit {
           this.token = null;
 
           //Redireccion
-          this._router.navigate(['/inicio']);
+          this._router.navigate(['/login']);
       }
     });
   }

@@ -20,7 +20,7 @@ export class UserService{
     }
 
     test(){
-        return 'Hola Mundoi desde un servicio';
+        return 'Hola Mundo desde un servicio';
     }
 
     register(user): Observable<any>{
@@ -43,6 +43,7 @@ export class UserService{
 
         return this._http.post(this.url+'login',params,{headers:headers});
     }
+    
     getIdentity(){
         let identity = JSON.parse(localStorage.getItem('identity'));
         if(identity && identity!= "undefined"){

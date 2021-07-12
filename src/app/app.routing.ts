@@ -11,9 +11,8 @@ import { TaskNewComponent } from './components/task/task-new.component';
 // Definir las rutas
 const appRoutes: Routes = [
     {path:'', component: LoginComponent},
-    {path:'inicio', component: LoginComponent },
+    {path:'inicio', component: TaskComponent },
     {path:'logout/:sure', component: LoginComponent },
-    {path:'dashboard', component: TaskComponent },
     {path:'taskNew', component: TaskNewComponent },
     {path:'login', component: LoginComponent },
     {path:'registro', component: RegisterComponent },

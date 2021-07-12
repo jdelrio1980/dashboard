@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
   
   ngOnInit(){
-    console.log('Cargado correctamente ')  
+    //console.log('Cargado correctamente ')  
     //this.loadUser();
   }
   ngDoCheck(){

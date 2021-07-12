@@ -5,14 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
 
   public page_title: string;
   constructor() { 
     this.page_title = 'Pagina de inicio';
   }
 
-  ngOnInit(): void {
-  }
+  
 
 }
